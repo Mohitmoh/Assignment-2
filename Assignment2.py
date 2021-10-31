@@ -1,1 +1,10 @@
 # Food delivery program
+print("-----WELCOME TO ARNOLD'S AMAZING EATS-----")
+firstName = input("Enter your First Name : ")
+lastName = input("Enter your Last Name : ")
+streetNumber = input("Enter your Street Number : ")
+streetName = input("Enter your Street Name : ")
+unit = input("Enter your Unit : ")
+city = input("Enter your City : ")
+province = input("Enter your Province : ")
+postalCode = input("Enter your Postal Code : ")
