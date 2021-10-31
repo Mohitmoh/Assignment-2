@@ -53,3 +53,12 @@ while True:           #infinte while loop
         continue
     elif confirm.lower() == 'y':
         break
+
+
+# Checking user is Student or Not 
+while True:
+    discount = input("you get 10% discount if you are a student. You are a student Y/N ")
+    if discount.lower() == 'y' or discount.lower() =='n':
+        break
+    else:
+        print("select the correct option")
