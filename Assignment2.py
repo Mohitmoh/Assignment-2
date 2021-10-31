@@ -57,8 +57,29 @@ while True:           #infinte while loop
 
 # Checking user is Student or Not 
 while True:
-    discount = input("you get 10% discount if you are a student. You are a student Y/N ")
-    if discount.lower() == 'y' or discount.lower() =='n':
+    studentCheck = input("you get 10% discount if you are a student. You are a student Y/N ")
+    if studentCheck.lower() == 'y' or studentCheck.lower() =='n':
         break
     else:
         print("select the correct option")
+
+# Calculation for placing order
+if srNumber == 1:
+    itemPrice = costItem1*amount
+elif srNumber == 2:
+    itemPrice = costItem2*amount
+
+# 10% discount if user is student 
+# Calculation for user is student or not
+if studentCheck.lower() == 'y':
+    discount = itemPrice*0.1
+else:
+    discount = 0
+
+subTotal = itemPrice - discount     # Sub Total 
+
+# Calculation for 13% Tax 
+tax = subTotal*0.13
+
+# total prices 
+totalAmount = subTotal - tax
