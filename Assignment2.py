@@ -83,3 +83,32 @@ tax = subTotal*0.13
 
 # total prices 
 totalAmount = subTotal - tax
+
+# *********** printing recipts ***********
+
+# printing user information
+print("{} {}".format(firstName, lastName))
+print("Address: {},{},{}".format(streetNumber, streetName, unit))
+print("{:>9s}{},{},{}".format('',city, province, postalCode))
+print("{:>40s}{:>20s}".format('Item','Item'))
+print("{:<10s}{:>30s}{:>20s}{:>20s}".format('Order', 'Amt', 'Price', 'Total'))
+print("{:-^80s}".format(''))
+
+# another method for writing recipts
+# print("\n{0} {1}\nAddress: {2},{3},{4}\n{14:>9s}{5},{6},{7}\n{8:>40s}{9:>20s}\n{10:<10s}{11:>30s}{12:>20s}{13:>20s}\n{14:-<10s}{14:->30s}{14:->20s}{14:->20s}".format(firstName,lastName,streetNumber,streetName,unit,city,province,postalCode,'Item','Item','Order','Amt','Price','Total',''))
+
+
+# printing dinner item that selected by user and also printing some details about prices 
+if srNumber == 1:
+    print("{:<10s}{:>30d}{:>20s}{:>20s}\n".format(dinnerItem1,amount,'$'+str("{:.2f}".format(costItem1)),'$'+str("{:.2f}".format(itemPrice))))
+else:
+    print("{:<10s}{:>30d}{:>20s}{:>20s}\n".format(dinnerItem2,amount,'$'+str("{:.2f}".format(costItem2)),'$'+str("{:.2f}".format(itemPrice))))
+
+# printing discount details if user is a student 
+if studentCheck.lower() == 'y':
+    print("{:<60s}{:>20s}".format('10% student savings','-$'+str("{:.2f}".format(discount))))
+else:
+    pass
+
+# printing details about tax and total bill price 
+print("{:>60s}{:>20s}\n{:>60s}{:>20s}\n{:>80s}\n{:>60s}{:>20s}".format('Sub Total','$'+str("{:.2f}".format(subTotal)),'Tax (13%)','$'+str("{:.2f}".format(tax)),'-------','TOTAL','$'+str("{:.2f}".format(totalAmount))))
