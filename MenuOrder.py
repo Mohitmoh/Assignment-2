@@ -5,6 +5,25 @@
 # Description:
 # This program take required input from user for Food delivery
 
+# Function: userDetails
+# Description: will take inputs from user 
+# Parameters: 
+#          none
+# Return value:
+#          userDetails: details of user
+def userDetails():
+    userDetails = []  # list for adding details of user
+    userDetails.append(input("Enter your First Name : "))
+    userDetails.append(input("Enter your Last Name : "))
+    userDetails.append(input("Enter your Street Number : "))
+    userDetails.append(input("Enter your Street Name : "))
+    userDetails.append(input("Enter your Unit : "))
+    userDetails.append(input("Enter your City : "))
+    userDetails.append(input("Enter your Province : "))
+    userDetails.append(input("Enter your Postal Code : "))
+    userDetails.append(input("Enter your Phone Number : "))
+    return userDetails
+
 # Function: listItem
 # Description: will print list of dinner item
 # Parameters: 
@@ -118,10 +137,10 @@ def totalAmount(subTotal,tax):
 #       city: city
 #       province : province
 #       postalCode: postal code
-def userInformation(firstName,lastName,streetNumber,streetName,unit,city,province,postalCode):
-    print("{} {}".format(firstName, lastName))
-    print("Address: {},{},{}".format(streetNumber, streetName, unit))
-    print("{:>9s}{},{},{}".format('', city, province, postalCode))
+def userInformation(userDetails):
+    print("{} {}".format(userDetails[0], userDetails[1]))
+    print("Address: {},{},{}".format(userDetails[2], userDetails[3], userDetails[4]))
+    print("{:>9s}{},{},{}".format('', userDetails[6], userDetails[7], userDetails[8]))
     print("{:>40s}{:>20s}".format('Item', 'Item'))
     print("{:<10s}{:>30s}{:>20s}{:>20s}".format('Order', 'Amt', 'Price', 'Total'))
     print("{:-^80s}".format(''))
@@ -130,15 +149,7 @@ def userInformation(firstName,lastName,streetNumber,streetName,unit,city,provinc
 print("-----WELCOME TO ARNOLD'S AMAZING EATS-----")
 
 # taken user and address details from user
-firstName = input("Enter your First Name : ")
-lastName = input("Enter your Last Name : ")
-streetNumber = input("Enter your Street Number : ")
-streetName = input("Enter your Street Name : ")
-unit = input("Enter your Unit : ")
-city = input("Enter your City : ")
-province = input("Enter your Province : ")
-postalCode = input("Enter your Postal Code : ")
-phoneNumber = input("Enter your Phone Number : ")
+userDetails = userDetails()
 
 # taken order from user
 dinnerItem1 = "Pizza"  # Dinner Items
@@ -186,7 +197,7 @@ totalAmount = totalAmount(subTotal,tax)
 # *********** printing recipts ***********
 
 # printing user information
-userInformation(firstName, lastName, streetNumber, streetName, unit, city, province, postalCode)
+userInformation(userDetails)
 
 # another method for writing recipts
 # print("\n{0} {1}\nAddress: {2},{3},{4}\n{14:>9s}{5},{6},{7}\n{8:>40s}{9:>20s}\n{10:<10s}{11:>30s}{12:>20s}{13:>20s}\n{14:-<10s}{14:->30s}{14:->20s}{14:->20s}".format(firstName,lastName,streetNumber,streetName,unit,city,province,postalCode,'Item','Item','Order','Amt','Price','Total',''))
