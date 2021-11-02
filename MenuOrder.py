@@ -99,53 +99,24 @@ def studentCheckFun():
         print("select the correct option")
         studentCheckFun()
 
-# Function: itemPrice
-# Description: will calculate price of total item
+# Function: calculationFun
+# Description: will calculate total amount
 # Parameters: 
 #          costList: list of dinner item's cost
 #           amount: amount of dinner
 # Return value:
-#          itemPrice: price of total item
-def itemPriceFun(costList,amount):
-    itemPrice = costList[srNumber+1]*amount
-    return itemPrice
-
-# Function: discount
-# Description: will calculate discount if user is student
-# Parameters: 
-#          studentCheck: check user is student or not
-# Return value:
-#          discount: discount for student
-def discountFun(studentCheck,itemPrice):
-    # 10% discount if user is student
-    # Calculation for user is student or not
+#          calculation: list of all calculation steps
+def calculationFun(costList,amount):
+    calculation = []
+    calculation.append(costList[srNumber-1]*amount) #itemPrice
     if studentCheck.lower() == 'y':
-        discount = itemPrice*0.1
+        calculation.append(calculation[0]*0.1)  #discount
     else:
-        discount = 0
-    return discount
-
-
-# Function: subTotal
-# Description: will calculate sub total
-# Parameters: 
-#          itemPrice: price of total item
-#          discount: discount for student
-# Return value:
-#          subTotal: sub total
-def subTotalFun(itemPrice,discount):
-    subTotal = itemPrice - discount     # Sub Total
-    return subTotal
-
-def taxFun(subTotal):
-    # Calculation for 13% Tax
-    tax = subTotal*0.13
-    return tax
-
-def totalAmountFun(subTotal,tax):
-    # total prices
-    totalAmount = subTotal + tax
-    return totalAmount
+        calculation.append(0)
+    calculation.append(calculation[0] - calculation[1])  #subTotal
+    calculation.append(calculation[2]*0.13)  #tax
+    calculation.append(calculation[2] + calculation[3]) #totalAmount
+    return calculation
 
 # Function: userInformation
 # Description: will print information of user
@@ -208,32 +179,25 @@ while True:  # infinte while loop
 studentCheck = studentCheckFun()
 
 # Calculation for placing order
-itemPrice = itemPriceFun(costList, amount)
-discount = discountFun(studentCheck, itemPrice)
-subTotal = subTotalFun(itemPrice, discount)
-tax = taxFun(subTotal)
-totalAmount = totalAmountFun(subTotal,tax)
+calculation = calculationFun(costList,amount)
+
 # *********** printing recipts ***********
 
 # printing user information
 userInformationFun(userDetails)
 
-# another method for writing recipts
-# print("\n{0} {1}\nAddress: {2},{3},{4}\n{14:>9s}{5},{6},{7}\n{8:>40s}{9:>20s}\n{10:<10s}{11:>30s}{12:>20s}{13:>20s}\n{14:-<10s}{14:->30s}{14:->20s}{14:->20s}".format(firstName,lastName,streetNumber,streetName,unit,city,province,postalCode,'Item','Item','Order','Amt','Price','Total',''))
-
-
 # printing dinner item that selected by user and also printing some details about prices
-print("{:<10s}{:>30d}{:>20s}{:>20s}\n".format(itemList[str(srNumber)], amount, '$' + str("{:.2f}".format(costList[srNumber-1])), '$'+str("{:.2f}".format(itemPrice))))
+print("{:<10s}{:>30d}{:>20s}{:>20s}\n".format(itemList[str(srNumber)], amount, '$' + str("{:.2f}".format(costList[srNumber-1])), '$'+str("{:.2f}".format(calculation[0]))))
 
 
 # printing discount details if user is a student
 if studentCheck.lower() == 'y':
     print("{:<60s}{:>20s}".format('10% student savings',
-          '-$'+str("{:.2f}".format(discount))))
+          '-$'+str("{:.2f}".format(calculation[1]))))
 else:
     pass
 
 
 # printing details about tax and total bill price
-print("{:>60s}{:>20s}\n{:>60s}{:>20s}\n{:>80s}\n{:>60s}{:>20s}".format('Sub Total', '$'+str("{:.2f}".format(subTotal)),
-      'Tax (13%)', '$'+str("{:.2f}".format(tax)), '-------', 'TOTAL', '$'+str("{:.2f}".format(totalAmount))))
+print("{:>60s}{:>20s}\n{:>60s}{:>20s}\n{:>80s}\n{:>60s}{:>20s}".format('Sub Total', '$'+str("{:.2f}".format(calculation[2])),
+      'Tax (13%)', '$'+str("{:.2f}".format(calculation[3])), '-------', 'TOTAL', '$'+str("{:.2f}".format(calculation[4]))))
