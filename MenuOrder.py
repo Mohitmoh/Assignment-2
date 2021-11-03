@@ -59,7 +59,7 @@ def deliveryFun():
         return delivery
     else:
         print("Please Enter correct detials")
-        delivery()
+        deliveryFun()
     
 # Function: itemListFun
 # Description: will create list for dinner item
@@ -136,6 +136,20 @@ def studentCheckFun():
         print("select the correct option")
         studentCheckFun()
 
+# Function: tipFun
+# Description: will take tip amount from user
+# Parameters: 
+#          None
+# Return value:
+#          tip : tip 
+def tipFun():
+    while True:
+        tip = int(input("Enter amount of Tip from 10, 15 or 20% "))
+        if tip in [10,15,20]:
+            return tip
+        else:
+            print("Enter correct Input")
+            tipFun()
 # Function: calculationFun
 # Description: will calculate total amount
 # Parameters: 
@@ -143,7 +157,9 @@ def studentCheckFun():
 #           amount: amount of dinner
 # Return value:
 #          calculation: list of all calculation steps
-def calculationFun(costList,amount):
+
+
+def calculationFun(costList, amount, tip, delivery):
     calculation = []
     calculation.append(costList[srNumber-1]*amount) #itemPrice
     if studentCheck.lower() == 'y':
@@ -151,8 +167,13 @@ def calculationFun(costList,amount):
     else:
         calculation.append(0)
     calculation.append(calculation[0] - calculation[1])  #subTotal
-    calculation.append(calculation[2]*0.13)  #tax
-    calculation.append(calculation[2] + calculation[3]) #totalAmount
+    calculation.append(calculation[2]*0.13)  #tax  [3]
+    calculation.append(calculation[2]*tip*0.01) #tip [4]
+    if delivery.lower() == 'y' and calculation[2] >= 30: 
+        calculation.append(5)      #[5]
+    else:
+        calculation.append(0)
+    calculation.append(calculation[2] + calculation[3] + calculation[4] + calculation[5])  # totalAmount   [6]
     return calculation
 
 # Function: userInformation
@@ -218,8 +239,14 @@ while True:  # infinte while loop
 # Checking user is Student or Not
 studentCheck = studentCheckFun()
 
+#taken input from user for tip
+if delivery.lower() == 'y':
+    tip = tipFun()
+else:
+    tip = 0
+
 # Calculation for placing order
-calculation = calculationFun(costList,amount)
+calculation = calculationFun(costList,amount,tip,delivery)
 
 # *********** printing recipts ***********
 
@@ -239,5 +266,9 @@ else:
 
 
 # printing details about tax and total bill price
-print("{:>60s}{:>20s}\n{:>60s}{:>20s}\n{:>80s}\n{:>60s}{:>20s}".format('Sub Total', '$'+str("{:.2f}".format(calculation[2])),
-      'Tax (13%)', '$'+str("{:.2f}".format(calculation[3])), '-------', 'TOTAL', '$'+str("{:.2f}".format(calculation[4]))))
+print("{:>60s}{:>20s}".format('Sub Total', '$'+str("{:.2f}".format(calculation[2]))))
+if delivery.lower() == 'y':
+    print("{:<60s}{:>20s}".format('Delivery Charges are','$'+str("{:.2f}".format(calculation[5]))))
+    print("{:<60s}{:>20s}".format('Tip for Delivery Boy '+str(tip)+'% of Sub Total','$'+str("{:.2f}".format(calculation[4]))))
+print("{:>60s}{:>20s}\n{:>80s}\n{:>60s}{:>20s}".format('Tax (13%)', '$' +
+      str("{:.2f}".format(calculation[3])), '-------', 'TOTAL', '$'+str("{:.2f}".format(calculation[6]))))
