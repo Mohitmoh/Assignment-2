@@ -5,6 +5,20 @@
 # Description:
 # This program take required input from user for Food delivery
 
+# Function: check
+# Description: will check user input is valid or not
+# Parameters: 
+#          none
+# Return value:
+#          userIn : input from user
+def check():
+    while True:
+        userIn = input()
+        if len(userIn) > 0:
+            return userIn
+        else:
+            print("Sorry, Your Input is wrong.\nPlease Enter again ")
+
 # Function: userDetailsFun
 # Description: will take inputs from user 
 # Parameters: 
@@ -13,15 +27,24 @@
 #          userDetails: details of user
 def userDetailsFun():
     userDetails = []  # list for adding details of user
-    userDetails.append(input("Enter your First Name : "))
-    userDetails.append(input("Enter your Last Name : "))
-    userDetails.append(input("Enter your Street Number : "))
-    userDetails.append(input("Enter your Street Name : "))
-    userDetails.append(input("Enter your Unit : "))
-    userDetails.append(input("Enter your City : "))
-    userDetails.append(input("Enter your Province : "))
-    userDetails.append(input("Enter your Postal Code : "))
-    userDetails.append(input("Enter your Phone Number : "))
+    print("Enter your First Name : ",end="")
+    userDetails.append(check())
+    print("Enter your Last Name : ",end="")
+    userDetails.append(check())
+    print("Enter your Street Number : ",end="")
+    userDetails.append(check())
+    print("Enter your Street Name : ",end="")
+    userDetails.append(check())
+    print("Enter your Unit : ",end="")
+    userDetails.append(check())
+    print("Enter your City : ",end="")
+    userDetails.append(check())
+    print("Enter your Province : ",end="")
+    userDetails.append(check())
+    print("Enter your Postal Code : ",end="")
+    userDetails.append(check())
+    print("Enter your Phone Number : ",end="")
+    userDetails.append(check())
     return userDetails
 
 # Function: itemListFun
