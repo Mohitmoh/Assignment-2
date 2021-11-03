@@ -47,6 +47,20 @@ def userDetailsFun():
     userDetails.append(check())
     return userDetails
 
+# Function: deliveryFun
+# Description: will take input for delivery
+# Parameters: 
+#          none
+# Return value:
+#          delivery: delivery
+def deliveryFun():
+    delivery = input("Do you want Delivery Dinner at Your Address(y/n) : ")
+    if delivery.lower() == 'y' or delivery.lower() == 'n':
+        return delivery
+    else:
+        print("Please Enter correct detials")
+        delivery()
+    
 # Function: itemListFun
 # Description: will create list for dinner item
 # Parameters: 
@@ -165,6 +179,9 @@ print("-----WELCOME TO ARNOLD'S AMAZING EATS-----")
 
 # taken user and address details from user
 userDetails = userDetailsFun()
+
+# taken from user for delivery
+delivery = deliveryFun()
 
 # taken order from user
 itemList = itemListFun() # list of dinner item
