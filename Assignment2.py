@@ -82,7 +82,7 @@ subTotal = itemPrice - discount     # Sub Total
 tax = subTotal*0.13
 
 # total prices 
-totalAmount = subTotal - tax
+totalAmount = subTotal + tax
 
 # *********** printing recipts ***********
 
